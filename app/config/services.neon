@@ -1,0 +1,9 @@
+services:
+
+    userModel: App\Model\UserManager(@doctrine.dao(App\Model\Entities\UserEntity))
+    routerFactory: App\RouterFactory
+    router: @App\RouterFactory::createRouter
+
+    - App\Utils\TemplateFactory(@nette.templateFactory)
+    nette.templateFactory:
+        autowired: no

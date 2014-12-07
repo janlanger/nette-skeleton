@@ -1,9 +1,18 @@
-log/*
-temp/*
+app/log/*
+app/temp/*
+www/webtemp/*
+
 vendor/*
 
-
+.idea
 .DS_Store
 !.gitignore
 !.htaccess
+!web.config
 app/config/config.local.neon
+/temp
+/log
+
+/node_modules
+
+/.project

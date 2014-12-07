@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{ifset #title}{include #title|striptags|trim} | {/ifset}Skeleton</title>
+    <meta name="description" content="{block #description}{/block}">
+    <meta name="copyright" content="Jan Langer">
+    <link rel="canonical" href="{plink //this}" />
+    <meta property="og:title" content="{ifset #title}{include #title|striptags|trim}{else}Skeleton{/ifset}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Skeleton">
+    <meta property="og:url" content="{plink //this}">
+    <meta property="og:image" content="{$baseUrl}/fbog.png">
+    <meta property="og:description" content="{include #description}">
+    <meta name="author" content="Jan Langer">
+    <meta name="robots" content="{ifset $robots}{$robots}{else}index, follow{/ifset}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="{$basePath}/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{$basePath}/favicon.ico" type="image/x-icon">
+
+    {if !$useFullAssets}
+        <link href="{$basePath}/webtemp/front.min.css{version}" rel="stylesheet">
+    {else}
+        <!-- build:css {$basePath}/webtemp/front.min.css -->
+        <link rel="stylesheet" type="text/css" href="{$basePath}/webtemp/css/screen.css"/>
+        <!-- endbuild -->
+    {/if}
+
+</head>
+<body class="presenter-{$presenter->name|webalize}">
+<header id="header">
+    <div>
+        <h1>It works!</h1>
+    </div>
+</header>
+
+{control flashMessages}
+{include #content}
+
+{control googleAnalytics}
+
+<footer>
+    {date('Y')} &copy; Jan Langer
+</footer>
+
+{if !$useFullAssets}
+    <script type="text/javascript" src="{$basePath}/webtemp/vendor.min.js{version}"></script>
+    <script type="text/javascript" src="{$basePath}/webtemp/front.min.js{version}"></script>
+{else}
+    <!-- build:js {$basePath}/webtemp/vendor.min.js -->
+    <script type="text/javascript" src="{$basePath}/assets/bower/nette-forms/src/assets/netteForms.js"></script>
+    <!-- endbuild -->
+    <!-- build:js {$basePath}/webtemp/front.min.js -->
+
+    <!-- endbuild -->
+{/if}
+
+{block js}{/block}
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script n:if="\Nette\Environment::isProduction()" n:syntax="off">
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X');ga('send','pageview');
+</script>
+
+</body>
+</html>

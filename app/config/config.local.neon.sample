@@ -1,0 +1,14 @@
+doctrine:
+    host: localhost
+    user: root
+    password:
+    dbname:
+
+parameters:
+    anyshape:
+        site:
+            license_key: # fill me
+            # root_password: #fill to change - default is 12345
+
+services:
+

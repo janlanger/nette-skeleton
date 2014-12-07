@@ -5,21 +5,47 @@
 # http://nette.org/security-warning
 #
 parameters:
+    useFullAssets: %debugMode%
+    googleAnalytics: UA-XXX
 
+includes:
+    - console.neon
+    - services.neon
+
+extensions:
+    events: Kdyby\Events\DI\EventsExtension
+    annotations: Kdyby\Annotations\DI\AnnotationsExtension
+    doctrine: Kdyby\Doctrine\DI\OrmExtension
+    #translations: Kdyby\Translation\DI\TranslationExtension
+    autowired: Kdyby\Autowired\DI\AutowiredExtension
+    doctrine2identity: Majkl578\NetteAddons\Doctrine2Identity\DI\IdentityExtension
+    images: Brabijan\Images\DI\ImagesExtension
 
 php:
-	date.timezone: Europe/Prague
-	# zlib.output_compression: yes
+    date.timezone: Europe/Prague
+    # zlib.output_compression: yes
 
+events:
+    debugger: false
 
 nette:
-	application:
-		errorPresenter: Error
-		mapping:
-			*: App\*Module\Presenters\*Presenter
-
-	session:
-		expiration: 14 days
+    container:
+        debugger: false
 
 
-services:
+    application:
+        errorPresenter: Error
+        mapping:
+            *: App\*Module\*Presenter
+    latte:
+        macros:
+            - App\Utils\Latte\UIMacros
+
+    session:
+        expiration: 14 days
+
+
+
+doctrine:
+    metadata:
+        App\Model: annotations("%appDir%/model")

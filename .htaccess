@@ -1,0 +1,22 @@
+# Apache configuration file (see httpd.apache.org/docs/2.2/mod/quickreference.html)
+
+# disable directory listing
+Options -Indexes
+
+# enable cool URL
+<IfModule mod_rewrite.c>
+
+    RewriteEngine On
+
+    RewriteBase /
+
+    # presmerovani domeny bez www
+    #RewriteCond %{HTTP_HOST} !^www\.
+    #RewriteCond %{HTTP_HOST} !^web\.
+    #RewriteCond %{HTTP_HOST} !stage\.
+    #RewriteRule (.*) http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+
+    RewriteRule ^(.*)$ www/$1 [L]
+
+</IfModule>

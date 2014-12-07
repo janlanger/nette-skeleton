@@ -1,0 +1,5 @@
+console:
+    url: http://sandbox.example.dev/
+
+extensions:
+    console: Kdyby\Console\DI\ConsoleExtension
